@@ -1,0 +1,283 @@
+Terminais sem uso na gramática
+
+   SPACE
+
+
+Estado 17 conflitos: 1 de deslocamento/redução
+Estado 23 conflitos: 1 de deslocamento/redução
+
+
+Gramática
+
+    0 $accept: JSON $end
+
+    1 JSON: JSON EXPRESSION EOL
+    2     | %empty
+
+    3 EXPRESSION: OCURLY PAIR CCURLY
+
+    4 PAIR: NAME COLON VALUE
+    5     | PAIR COMMA PAIR
+    6     | %empty
+
+    7 VALUES: VALUE
+    8       | VALUES COMMA VALUES
+
+    9 VALUE: NAME
+   10      | INT
+   11      | FLOAT
+   12      | EXPRESSION
+   13      | OSQUARE VALUES CSQUARE
+   14      | OSQUARE CSQUARE
+
+
+Terminais, com as regras onde eles aparecem
+
+$end (0) 0
+error (256)
+NAME (258) 4 9
+INT (259) 10
+FLOAT (260) 11
+EOL (261) 1
+COLON (262) 4
+COMMA (263) 5 8
+OSQUARE (264) 13 14
+CSQUARE (265) 13 14
+OCURLY (266) 3
+CCURLY (267) 3
+SPACE (268)
+
+
+Não terminais com as regras onde eles aparecem
+
+$accept (14)
+    à esquerda: 0
+JSON (15)
+    à esquerda: 1 2, à direita: 0 1
+EXPRESSION (16)
+    à esquerda: 3, à direita: 1 12
+PAIR (17)
+    à esquerda: 4 5 6, à direita: 3 5
+VALUES (18)
+    à esquerda: 7 8, à direita: 8 13
+VALUE (19)
+    à esquerda: 9 10 11 12 13 14, à direita: 4 7
+
+
+Estado 0
+
+    0 $accept: . JSON $end
+
+    $padrão  reduzir usando a regra 2 (JSON)
+
+    JSON  ir ao estado 1
+
+
+Estado 1
+
+    0 $accept: JSON . $end
+    1 JSON: JSON . EXPRESSION EOL
+
+    $end    deslocar, e ir ao estado 2
+    OCURLY  deslocar, e ir ao estado 3
+
+    EXPRESSION  ir ao estado 4
+
+
+Estado 2
+
+    0 $accept: JSON $end .
+
+    $padrão  aceitar
+
+
+Estado 3
+
+    3 EXPRESSION: OCURLY . PAIR CCURLY
+
+    NAME  deslocar, e ir ao estado 5
+
+    $padrão  reduzir usando a regra 6 (PAIR)
+
+    PAIR  ir ao estado 6
+
+
+Estado 4
+
+    1 JSON: JSON EXPRESSION . EOL
+
+    EOL  deslocar, e ir ao estado 7
+
+
+Estado 5
+
+    4 PAIR: NAME . COLON VALUE
+
+    COLON  deslocar, e ir ao estado 8
+
+
+Estado 6
+
+    3 EXPRESSION: OCURLY PAIR . CCURLY
+    5 PAIR: PAIR . COMMA PAIR
+
+    COMMA   deslocar, e ir ao estado 9
+    CCURLY  deslocar, e ir ao estado 10
+
+
+Estado 7
+
+    1 JSON: JSON EXPRESSION EOL .
+
+    $padrão  reduzir usando a regra 1 (JSON)
+
+
+Estado 8
+
+    4 PAIR: NAME COLON . VALUE
+
+    NAME     deslocar, e ir ao estado 11
+    INT      deslocar, e ir ao estado 12
+    FLOAT    deslocar, e ir ao estado 13
+    OSQUARE  deslocar, e ir ao estado 14
+    OCURLY   deslocar, e ir ao estado 3
+
+    EXPRESSION  ir ao estado 15
+    VALUE       ir ao estado 16
+
+
+Estado 9
+
+    5 PAIR: PAIR COMMA . PAIR
+
+    NAME  deslocar, e ir ao estado 5
+
+    $padrão  reduzir usando a regra 6 (PAIR)
+
+    PAIR  ir ao estado 17
+
+
+Estado 10
+
+    3 EXPRESSION: OCURLY PAIR CCURLY .
+
+    $padrão  reduzir usando a regra 3 (EXPRESSION)
+
+
+Estado 11
+
+    9 VALUE: NAME .
+
+    $padrão  reduzir usando a regra 9 (VALUE)
+
+
+Estado 12
+
+   10 VALUE: INT .
+
+    $padrão  reduzir usando a regra 10 (VALUE)
+
+
+Estado 13
+
+   11 VALUE: FLOAT .
+
+    $padrão  reduzir usando a regra 11 (VALUE)
+
+
+Estado 14
+
+   13 VALUE: OSQUARE . VALUES CSQUARE
+   14      | OSQUARE . CSQUARE
+
+    NAME     deslocar, e ir ao estado 11
+    INT      deslocar, e ir ao estado 12
+    FLOAT    deslocar, e ir ao estado 13
+    OSQUARE  deslocar, e ir ao estado 14
+    CSQUARE  deslocar, e ir ao estado 18
+    OCURLY   deslocar, e ir ao estado 3
+
+    EXPRESSION  ir ao estado 15
+    VALUES      ir ao estado 19
+    VALUE       ir ao estado 20
+
+
+Estado 15
+
+   12 VALUE: EXPRESSION .
+
+    $padrão  reduzir usando a regra 12 (VALUE)
+
+
+Estado 16
+
+    4 PAIR: NAME COLON VALUE .
+
+    $padrão  reduzir usando a regra 4 (PAIR)
+
+
+Estado 17
+
+    5 PAIR: PAIR . COMMA PAIR
+    5     | PAIR COMMA PAIR .
+
+    COMMA  deslocar, e ir ao estado 9
+
+    COMMA     [reduzir usando a regra 5 (PAIR)]
+    $padrão  reduzir usando a regra 5 (PAIR)
+
+
+Estado 18
+
+   14 VALUE: OSQUARE CSQUARE .
+
+    $padrão  reduzir usando a regra 14 (VALUE)
+
+
+Estado 19
+
+    8 VALUES: VALUES . COMMA VALUES
+   13 VALUE: OSQUARE VALUES . CSQUARE
+
+    COMMA    deslocar, e ir ao estado 21
+    CSQUARE  deslocar, e ir ao estado 22
+
+
+Estado 20
+
+    7 VALUES: VALUE .
+
+    $padrão  reduzir usando a regra 7 (VALUES)
+
+
+Estado 21
+
+    8 VALUES: VALUES COMMA . VALUES
+
+    NAME     deslocar, e ir ao estado 11
+    INT      deslocar, e ir ao estado 12
+    FLOAT    deslocar, e ir ao estado 13
+    OSQUARE  deslocar, e ir ao estado 14
+    OCURLY   deslocar, e ir ao estado 3
+
+    EXPRESSION  ir ao estado 15
+    VALUES      ir ao estado 23
+    VALUE       ir ao estado 20
+
+
+Estado 22
+
+   13 VALUE: OSQUARE VALUES CSQUARE .
+
+    $padrão  reduzir usando a regra 13 (VALUE)
+
+
+Estado 23
+
+    8 VALUES: VALUES . COMMA VALUES
+    8       | VALUES COMMA VALUES .
+
+    COMMA  deslocar, e ir ao estado 21
+
+    COMMA     [reduzir usando a regra 8 (VALUES)]
+    $padrão  reduzir usando a regra 8 (VALUES)

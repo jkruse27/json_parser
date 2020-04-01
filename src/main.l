@@ -9,6 +9,7 @@ void yyerror(char *);
 
 
 %%
+<<EOF>> 			{return EOL;}
 [:]				{return COLON;}
 [,]				{return COMMA;}
 [\{] 				{return OCURLY;}
@@ -18,8 +19,8 @@ void yyerror(char *);
 ["][a-zA-Z][a-zA-Z0-9\_\ ]*["] 	{return NAME;}
 [0-9]+ 				{return INT;}
 [0-9]+[.][0-9]+			{return FLOAT;}
-^[\n] ;
-[\n]				{return EOL;}
+[\n] ;
+[:space:]+ ;
 . ;
 
 

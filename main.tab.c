@@ -69,7 +69,7 @@
 void yyerror(char *c);
 int yylex(void);
 
-#line 73 "src/y.tab.c" /* yacc.c:339  */
+#line 73 "main.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -87,10 +87,7 @@ int yylex(void);
 # define YYERROR_VERBOSE 0
 #endif
 
-/* In a future release of Bison, this section will be replaced
-   by #include "y.tab.h".  */
-#ifndef YY_YY_SRC_Y_TAB_H_INCLUDED
-# define YY_YY_SRC_Y_TAB_H_INCLUDED
+
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -116,17 +113,6 @@ extern int yydebug;
     CCURLY = 267
   };
 #endif
-/* Tokens.  */
-#define NAME 258
-#define INT 259
-#define FLOAT 260
-#define EOL 261
-#define COLON 262
-#define COMMA 263
-#define OSQUARE 264
-#define CSQUARE 265
-#define OCURLY 266
-#define CCURLY 267
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -140,11 +126,11 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_SRC_Y_TAB_H_INCLUDED  */
+
 
 /* Copy the second part of user declarations.  */
 
-#line 148 "src/y.tab.c" /* yacc.c:358  */
+#line 134 "main.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -1225,11 +1211,11 @@ yyreduce:
         case 2:
 #line 16 "src/main.y" /* yacc.c:1646  */
     {printf("VALIDO\n"); return 0;}
-#line 1229 "src/y.tab.c" /* yacc.c:1646  */
+#line 1215 "main.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1233 "src/y.tab.c" /* yacc.c:1646  */
+#line 1219 "main.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires

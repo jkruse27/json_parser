@@ -1,0 +1,277 @@
+Gramática
+
+    0 $accept: JSON $end
+
+    1 JSON: OCURLY EXPRESSION CCURLY JSON EOL
+    2     | %empty
+
+    3 EXPRESSION: NAME COLON VALUE
+    4           | EXPRESSION COMMA EXPRESSION
+
+    5 VALUE: NAME
+    6      | INT
+    7      | FLOAT
+    8      | OCURLY EXPRESSION CCURLY
+    9      | OSQUARE VALUES CSQUARE
+   10      | OSQUARE CSQUARE
+
+   11 VALUES: VALUE
+   12       | VALUE COMMA VALUES
+
+
+Terminais, com as regras onde eles aparecem
+
+$end (0) 0
+error (256)
+NAME (258) 3 5
+INT (259) 6
+FLOAT (260) 7
+EOL (261) 1
+COLON (262) 3
+COMMA (263) 4 12
+OSQUARE (264) 9 10
+CSQUARE (265) 9 10
+OCURLY (266) 1 8
+CCURLY (267) 1 8
+
+
+Não terminais com as regras onde eles aparecem
+
+$accept (13)
+    à esquerda: 0
+JSON (14)
+    à esquerda: 1 2, à direita: 0 1
+EXPRESSION (15)
+    à esquerda: 3 4, à direita: 1 4 8
+VALUE (16)
+    à esquerda: 5 6 7 8 9 10, à direita: 3 11 12
+VALUES (17)
+    à esquerda: 11 12, à direita: 9 12
+
+
+Estado 0
+
+    0 $accept: . JSON $end
+
+    OCURLY  deslocar, e ir ao estado 1
+
+    $padrão  reduzir usando a regra 2 (JSON)
+
+    JSON  ir ao estado 2
+
+
+Estado 1
+
+    1 JSON: OCURLY . EXPRESSION CCURLY JSON EOL
+
+    NAME  deslocar, e ir ao estado 3
+
+    EXPRESSION  ir ao estado 4
+
+
+Estado 2
+
+    0 $accept: JSON . $end
+
+    $end  deslocar, e ir ao estado 5
+
+
+Estado 3
+
+    3 EXPRESSION: NAME . COLON VALUE
+
+    COLON  deslocar, e ir ao estado 6
+
+
+Estado 4
+
+    1 JSON: OCURLY EXPRESSION . CCURLY JSON EOL
+    4 EXPRESSION: EXPRESSION . COMMA EXPRESSION
+
+    COMMA   deslocar, e ir ao estado 7
+    CCURLY  deslocar, e ir ao estado 8
+
+
+Estado 5
+
+    0 $accept: JSON $end .
+
+    $padrão  aceitar
+
+
+Estado 6
+
+    3 EXPRESSION: NAME COLON . VALUE
+
+    NAME     deslocar, e ir ao estado 9
+    INT      deslocar, e ir ao estado 10
+    FLOAT    deslocar, e ir ao estado 11
+    OSQUARE  deslocar, e ir ao estado 12
+    OCURLY   deslocar, e ir ao estado 13
+
+    VALUE  ir ao estado 14
+
+
+Estado 7
+
+    4 EXPRESSION: EXPRESSION COMMA . EXPRESSION
+
+    NAME  deslocar, e ir ao estado 3
+
+    EXPRESSION  ir ao estado 15
+
+
+Estado 8
+
+    1 JSON: OCURLY EXPRESSION CCURLY . JSON EOL
+
+    OCURLY  deslocar, e ir ao estado 1
+
+    $padrão  reduzir usando a regra 2 (JSON)
+
+    JSON  ir ao estado 16
+
+
+Estado 9
+
+    5 VALUE: NAME .
+
+    $padrão  reduzir usando a regra 5 (VALUE)
+
+
+Estado 10
+
+    6 VALUE: INT .
+
+    $padrão  reduzir usando a regra 6 (VALUE)
+
+
+Estado 11
+
+    7 VALUE: FLOAT .
+
+    $padrão  reduzir usando a regra 7 (VALUE)
+
+
+Estado 12
+
+    9 VALUE: OSQUARE . VALUES CSQUARE
+   10      | OSQUARE . CSQUARE
+
+    NAME     deslocar, e ir ao estado 9
+    INT      deslocar, e ir ao estado 10
+    FLOAT    deslocar, e ir ao estado 11
+    OSQUARE  deslocar, e ir ao estado 12
+    CSQUARE  deslocar, e ir ao estado 17
+    OCURLY   deslocar, e ir ao estado 13
+
+    VALUE   ir ao estado 18
+    VALUES  ir ao estado 19
+
+
+Estado 13
+
+    8 VALUE: OCURLY . EXPRESSION CCURLY
+
+    NAME  deslocar, e ir ao estado 3
+
+    EXPRESSION  ir ao estado 20
+
+
+Estado 14
+
+    3 EXPRESSION: NAME COLON VALUE .
+
+    $padrão  reduzir usando a regra 3 (EXPRESSION)
+
+
+Estado 15
+
+    4 EXPRESSION: EXPRESSION . COMMA EXPRESSION
+    4           | EXPRESSION COMMA EXPRESSION .
+
+    COMMA  deslocar, e ir ao estado 7
+
+    $padrão  reduzir usando a regra 4 (EXPRESSION)
+
+
+Estado 16
+
+    1 JSON: OCURLY EXPRESSION CCURLY JSON . EOL
+
+    EOL  deslocar, e ir ao estado 21
+
+
+Estado 17
+
+   10 VALUE: OSQUARE CSQUARE .
+
+    $padrão  reduzir usando a regra 10 (VALUE)
+
+
+Estado 18
+
+   11 VALUES: VALUE .
+   12       | VALUE . COMMA VALUES
+
+    COMMA  deslocar, e ir ao estado 22
+
+    $padrão  reduzir usando a regra 11 (VALUES)
+
+
+Estado 19
+
+    9 VALUE: OSQUARE VALUES . CSQUARE
+
+    CSQUARE  deslocar, e ir ao estado 23
+
+
+Estado 20
+
+    4 EXPRESSION: EXPRESSION . COMMA EXPRESSION
+    8 VALUE: OCURLY EXPRESSION . CCURLY
+
+    COMMA   deslocar, e ir ao estado 7
+    CCURLY  deslocar, e ir ao estado 24
+
+
+Estado 21
+
+    1 JSON: OCURLY EXPRESSION CCURLY JSON EOL .
+
+    $padrão  reduzir usando a regra 1 (JSON)
+
+
+Estado 22
+
+   12 VALUES: VALUE COMMA . VALUES
+
+    NAME     deslocar, e ir ao estado 9
+    INT      deslocar, e ir ao estado 10
+    FLOAT    deslocar, e ir ao estado 11
+    OSQUARE  deslocar, e ir ao estado 12
+    OCURLY   deslocar, e ir ao estado 13
+
+    VALUE   ir ao estado 18
+    VALUES  ir ao estado 25
+
+
+Estado 23
+
+    9 VALUE: OSQUARE VALUES CSQUARE .
+
+    $padrão  reduzir usando a regra 9 (VALUE)
+
+
+Estado 24
+
+    8 VALUE: OCURLY EXPRESSION CCURLY .
+
+    $padrão  reduzir usando a regra 8 (VALUE)
+
+
+Estado 25
+
+   12 VALUES: VALUE COMMA VALUES .
+
+    $padrão  reduzir usando a regra 12 (VALUES)

@@ -54,8 +54,7 @@ extern int yydebug;
     OSQUARE = 264,
     CSQUARE = 265,
     OCURLY = 266,
-    CCURLY = 267,
-    SPACE = 268
+    CCURLY = 267
   };
 #endif
 /* Tokens.  */
@@ -69,7 +68,6 @@ extern int yydebug;
 #define CSQUARE 265
 #define OCURLY 266
 #define CCURLY 267
-#define SPACE 268
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
