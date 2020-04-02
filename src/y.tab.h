@@ -46,28 +46,30 @@ extern int yydebug;
   enum yytokentype
   {
     NAME = 258,
-    INT = 259,
-    FLOAT = 260,
-    EOL = 261,
-    COLON = 262,
-    COMMA = 263,
-    OSQUARE = 264,
-    CSQUARE = 265,
-    OCURLY = 266,
-    CCURLY = 267
+    BOOL = 259,
+    INT = 260,
+    FLOAT = 261,
+    EOL = 262,
+    COLON = 263,
+    COMMA = 264,
+    OSQUARE = 265,
+    CSQUARE = 266,
+    OCURLY = 267,
+    CCURLY = 268
   };
 #endif
 /* Tokens.  */
 #define NAME 258
-#define INT 259
-#define FLOAT 260
-#define EOL 261
-#define COLON 262
-#define COMMA 263
-#define OSQUARE 264
-#define CSQUARE 265
-#define OCURLY 266
-#define CCURLY 267
+#define BOOL 259
+#define INT 260
+#define FLOAT 261
+#define EOL 262
+#define COLON 263
+#define COMMA 264
+#define OSQUARE 265
+#define CSQUARE 266
+#define OCURLY 267
+#define CCURLY 268
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED

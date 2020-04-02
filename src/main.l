@@ -19,8 +19,10 @@ void yyerror(char *);
 ["][a-zA-Z][a-zA-Z0-9\_\ ]*["] 	{return NAME;}
 [0-9]+ 				{return INT;}
 [0-9]+[.][0-9]+			{return FLOAT;}
+true				{return BOOL;}
+false				{return BOOL;}
 [[:space:]]+ ;
-. ;
+. {yyerror("");};
 
 
 %%

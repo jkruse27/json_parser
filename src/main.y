@@ -7,7 +7,7 @@ void yyerror(char *c);
 int yylex(void);
 %}
 
-%token NAME INT FLOAT EOL COLON COMMA OSQUARE CSQUARE OCURLY CCURLY
+%token NAME BOOL INT FLOAT EOL COLON COMMA OSQUARE CSQUARE OCURLY CCURLY
 %right COMMA
 
 %%
@@ -23,7 +23,8 @@ EXPRESSION:
 	;
 
 VALUE:
-	NAME 
+	NAME
+	| BOOL 
 	| INT
 	| FLOAT 
 	| OCURLY EXPRESSION CCURLY
@@ -40,6 +41,7 @@ VALUES:
 
 void yyerror(char *s) {
 	printf("INVALIDO\n");
+	exit(1);
 }
 
 int main() {
