@@ -7,19 +7,19 @@ void yyerror(char *c);
 int yylex(void);
 %}
 
-%token NAME BOOL INT FLOAT EOL COLON COMMA OSQUARE CSQUARE OCURLY CCURLY
-%right COMMA
+%token NAME BOOL INT FLOAT EOL
+%right ','
 
 %%
 
 JSON:
-	OCURLY EXPRESSION CCURLY JSON EOL 	{printf("VALIDO\n"); return 0;}
+	'{' EXPRESSION '}' JSON EOL 	{printf("VALIDO\n"); return 0;}
 	|	
 	;
 
 EXPRESSION:
-	NAME COLON VALUE
-	| EXPRESSION COMMA EXPRESSION
+	NAME ':' VALUE
+	| EXPRESSION ',' EXPRESSION
 	;
 
 VALUE:
@@ -27,14 +27,14 @@ VALUE:
 	| BOOL 
 	| INT
 	| FLOAT 
-	| OCURLY EXPRESSION CCURLY
-	| OSQUARE VALUES CSQUARE
-	| OSQUARE CSQUARE
+	| '{' EXPRESSION '}'
+	| '[' VALUES ']'
+	| '[' ']'
 	;
 
 VALUES:
 	VALUE
-	| VALUE COMMA VALUES
+	| VALUE ',' VALUES
 	;
 
 %%

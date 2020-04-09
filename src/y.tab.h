@@ -49,13 +49,7 @@ extern int yydebug;
     BOOL = 259,
     INT = 260,
     FLOAT = 261,
-    EOL = 262,
-    COLON = 263,
-    COMMA = 264,
-    OSQUARE = 265,
-    CSQUARE = 266,
-    OCURLY = 267,
-    CCURLY = 268
+    EOL = 262
   };
 #endif
 /* Tokens.  */
@@ -64,12 +58,6 @@ extern int yydebug;
 #define INT 260
 #define FLOAT 261
 #define EOL 262
-#define COLON 263
-#define COMMA 264
-#define OSQUARE 265
-#define CSQUARE 266
-#define OCURLY 267
-#define CCURLY 268
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED

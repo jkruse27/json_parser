@@ -753,32 +753,32 @@ case YY_STATE_EOF(INITIAL):
 case 1:
 YY_RULE_SETUP
 #line 13 "src/main.l"
-{return COLON;}
+{return (*yytext);}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
 #line 14 "src/main.l"
-{return COMMA;}
+{return (*yytext);}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 15 "src/main.l"
-{return OCURLY;}
+{return (*yytext);}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
 #line 16 "src/main.l"
-{return CCURLY;}
+{return (*yytext);}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 17 "src/main.l"
-{return OSQUARE;}
+{return (*yytext);}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 18 "src/main.l"
-{return CSQUARE;}
+{return (*yytext);}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
